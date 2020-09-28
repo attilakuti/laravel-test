@@ -14,9 +14,9 @@ class QuestionnaireSeeder extends Seeder
     public function run()
     {
         DB::table('questionnaires')->insert([
-            ['name' => Str::random(10)],
-            ['name' => Str::random(10)],
-            ['name' => Str::random(10)]
+            ['name' => "Questionnaire 1"],
+            ['name' => "Questionnaire 2"],
+            ['name' => "Questionnaire 3"]
         ]);
     }
 }
