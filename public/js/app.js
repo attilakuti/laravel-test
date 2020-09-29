@@ -37268,6 +37268,56 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 AOS.init();
 
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+var questionnaireForm = document.querySelector("#questionnaireForm"); // Questionnaire Form Submit Event (AJAX)
+
+if (questionnaireForm) {
+  questionnaireForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var questionnaireId = $('.hidden-questionnaire-id').val();
+    var email = $('.hidden-user-email').val();
+    var answerOne = $('#answer-0').val();
+    var answerTwo = $('#answer-1').val();
+    var answerThree = $('#answer-2').val();
+    var answerFour = $('#answer-3').val();
+    document.querySelector('.questionnaire-submit-btn').innerText = "Sending...";
+    axios({
+      method: 'post',
+      url: "".concat(rootURL, "/questionnaire/store"),
+      data: {
+        _token: CSRF_TOKEN,
+        questionnaire_id: questionnaireId,
+        email: email,
+        first_answer: answerOne,
+        second_answer: answerTwo,
+        third_answer: answerThree,
+        fourth_answer: answerFour
+      }
+    }).then(function (response) {
+      console.log(response);
+      document.querySelector('.questionnaire-submit-btn').innerText = "Submit";
+      var Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 6000,
+        timerProgressBar: true,
+        onOpen: function onOpen(toast) {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+      });
+      Toast.fire({
+        icon: 'success',
+        title: 'Your answers have been stored! Why not do another one?!'
+      });
+      document.querySelector("#questionnaireForm").reset();
+    });
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

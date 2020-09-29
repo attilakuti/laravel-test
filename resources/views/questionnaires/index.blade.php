@@ -12,23 +12,24 @@
         <h2 class="text-center mt-4 mb-3 bg-primary d-inline-block text-white rounded p-2" data-aos="zoom-in">{{ $questionnaire_name }}</h2>
         <div class="row mt-4">
             <div class="col-12">
-                <form class="shadow rounded p-4" data-aos="fade-up">
+                <form method="POST" id="questionnaireForm" class="shadow rounded p-4" data-aos="fade-up">
+                    @csrf
                     @foreach ($questions as $question)
-
                         @if ($loop->first)
                             <div class="form-group">
                                 <label for="answer-{{ $loop->index }}">{{ $question->question }}</label>
-                                <input type="text" class="form-control" id="answer-{{ $loop->index }}" placeholder="Your answer for question {{ $question->id}}" autofocus>
+                                <input type="text" class="form-control" id="answer-{{ $loop->index }}" placeholder="Your answer for question {{ $question->id}}" autofocus required>
                             </div>
                         @else
                             <div class="form-group">
                                 <label for="answer-{{ $loop->index }}">{{ $question->question }}</label>
-                                <input type="text" class="form-control" id="answer-{{ $loop->index }}" placeholder="Your answer for question {{ $question->id}}">
+                                <input type="text" class="form-control" id="answer-{{ $loop->index }}" placeholder="Your answer for question {{ $question->id}}" required>
                             </div>
                         @endif
-
                     @endforeach
-                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    <input type="hidden" class="hidden-user-email" value="{{ Auth::user()->email }}">
+                    <input type="hidden" class="hidden-questionnaire-id" value="{{ $questionnaire_id }}">
+                    <button type="submit" class="btn btn-primary w-100 questionnaire-submit-btn" id="{{ $questionnaire_slug }}Btn">Submit</button>
                 </form>
             </div>
         </div>
@@ -41,6 +42,5 @@
         @endif
     </div>
 </div>
-
 
 @endsection

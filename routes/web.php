@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('questionnaire/{slug}', 'QuestionnaireController@show')->name('questionnaire');
+Route::post('/questionnaire/store', 'QuestionnaireController@store')->name('questionnaire.store');
+Route::get('/questionnaire/{slug}', 'QuestionnaireController@show')->name('questionnaire');
