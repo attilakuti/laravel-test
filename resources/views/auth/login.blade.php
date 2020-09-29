@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -48,6 +48,7 @@
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
+                                <p class="mb-0 mt-2">Not a member yet? <a href="{{ route('register') }}">{{ __('Register') }}</a></p>
                             </div>
                         </div>
 

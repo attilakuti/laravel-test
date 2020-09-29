@@ -12,6 +12,11 @@ class QuestionnaireController extends Controller
     //     $questionnaire contains our questionnaire object.
     // }
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function show($slug)
     {
         
@@ -21,7 +26,7 @@ class QuestionnaireController extends Controller
         $questions = Question::where('questionnaire_id', '=', $questionnaire_id)->get();
 
         return view(
-            'welcome', 
+            'questionnaires/index', 
             [
                 'questionnaire_id' => $questionnaire_id,
                 'questionnaire_name' => $questionnaire_name,
