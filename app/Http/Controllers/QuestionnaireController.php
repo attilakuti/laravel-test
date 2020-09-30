@@ -13,12 +13,14 @@ class QuestionnaireController extends Controller
     // {
     //     $questionnaire contains our questionnaire object.
     // }
-
+    
+    // Make users sign in before completing a questinnaire 
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    // Show questionnaire based on the incoming $slug argument
     public function show($slug)
     {
         
@@ -40,6 +42,7 @@ class QuestionnaireController extends Controller
 
     }
 
+    // Store answers in the answers table (AJAX)
     public function store(Request $request) {
 
         $questionnaire_id = $request->input('questionnaire_id');

@@ -49,7 +49,7 @@
                                             {{ Auth::user()->name }}
                                         </a>
 
-                                        <div class="dropdown-menu dropdown-menu-right mt-0 mt-md-2 py-0 border-top-0 rounded-bottom" aria-labelledby="navbarDropdown">
+                                        <div class="dropdown-menu dropdown-menu-right mt-0 mt-md-2 py-0 border-0 rounded-bottom" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item py-2" href="{{ route('home') }}">
                                                 <i class="fas fa-user-circle"></i> My Account
                                             </a>
